@@ -2,6 +2,9 @@ require "sidekiq/web"
 require "sidekiq-scheduler/web"
 
 Rails.application.routes.draw do
+  resources :comments
+  resources :tasks
+  resources :projects
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
