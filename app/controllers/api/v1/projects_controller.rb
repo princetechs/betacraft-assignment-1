@@ -41,8 +41,13 @@ module Api
     end
   
     # POST /api/v1/projects/:id/invite
-    def invite_member
+    def invite
+      if @project.nil?
+        render json: { error: "Project not found" }, status: :not_found and return
+      end
+  
       user = User.find_by(email: params[:email])
+  
       if user && @project.members << user
         render json: { message: "User invited successfully" }, status: :ok
       else
@@ -50,19 +55,16 @@ module Api
       end
     end
   
-    rescue_from ActionController::ParameterMissing do |e|
-        render json: { error: e.message }, status: :bad_request
-      end
-    
-      private
+    private
   
     def set_user
       @user = current_user
     end
   
     def set_project
-      # Replace `@user` here with `User` to find projects without relying on current_user
-      @project = Project.find(params[:id])
+      @project = Project.find_by(id: params[:id])  # Use `find_by` to prevent an exception
+      # If the project is not found, we can return a 404 response
+      render json: { error: "Project not found" }, status: :not_found if @project.nil?
     end
   
     def project_params

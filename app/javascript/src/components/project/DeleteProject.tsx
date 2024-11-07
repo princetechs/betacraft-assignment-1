@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api'; // Import the custom API instance
+import api from '../../services/api'; // Import the custom API instance
 
 const DeleteProject: React.FC<{ id: string }> = ({ id }) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const DeleteProject: React.FC<{ id: string }> = ({ id }) => {
   };
 
   return (
-    <button onClick={handleDelete}>Delete Project</button>
+    <button className='deletebtn' onClick={handleDelete}>Delete Project</button>
   );
 };
 

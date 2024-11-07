@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../services/api'; // Import the custom API instance
+import api from '../../services/api'; // Import the custom API instance
 
 const CreateProject: React.FC = () => {
   const [name, setName] = useState<string>('');

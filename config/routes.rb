@@ -19,23 +19,41 @@ Rails.application.routes.draw do
   post '/users/google_oauth2', to: 'sessions#google_token_auth'
   get 'users/auth/failure', to: 'sessions#failure'
 
-  # API namespace for profile and project-related actions
+  # API namespace for user profile and project-related actions
   namespace :api do
     namespace :v1 do
-      get 'profile', to: 'users#profile'      # User profile data
-      resources :projects, only: [:index, :show, :create, :update, :destroy]  # Project actions (CRUD)
-      resources :tasks, only: [:create, :update, :destroy]                      # Task actions (CRUD)
-      resources :comments, only: [:create, :update, :destroy]                   # Comment actions (CRUD)
+      # User profile data route
+      get 'profile', to: 'users#profile'
+
+      # Project routes (CRUD), invites, and nested tasks/memberships
+      resources :projects, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          post :invite # Custom route to invite users to a project
+        end
+
+        # Nested resources for tasks and project memberships
+        resources :tasks, only: [:show, :create] do
+          member do
+            patch :complete # Mark a task as completed
+          end
+        end
+
+        resources :project_memberships, only: [:create] # Invite a user to the project
+      end
+
+      # Task routes (CRUD) with nested comments
+      resources :tasks, only: [:create, :update, :destroy] do
+        resources :comments, only: [:create, :update, :destroy] # Comment actions for tasks
+      end
     end
   end
 
   # Root route for React (redirect to React app's entry point)
   root 'home#index'
 
-  # Health check route (used for monitoring)
+  # Health check route
   get 'up', to: 'rails/health#show', as: :rails_health_check
 
-  # Catch-all route for unmatched paths
-  # This should point to the React frontend, which will handle routing
+  # Catch-all route for unmatched paths - for React frontend routing
   get '*path', to: 'home#index', via: :all
 end

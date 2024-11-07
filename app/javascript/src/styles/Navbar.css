@@ -94,26 +94,17 @@
     background-color: #3b44cc;
   }
   
-  /* Add some basic styling */
-.error {
-  color: red;
-  margin-top: 10px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
+  .navbar-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navbar-button:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  

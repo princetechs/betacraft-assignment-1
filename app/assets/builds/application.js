@@ -1089,7 +1089,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState8(initialState) {
+          function useState13(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1101,7 +1101,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect7(create, deps) {
+          function useEffect9(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1884,7 +1884,7 @@
           exports.useContext = useContext6;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect7;
+          exports.useEffect = useEffect9;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1892,7 +1892,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState8;
+          exports.useState = useState13;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2388,9 +2388,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React12 = require_react();
+          var React17 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React17.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3997,7 +3997,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React12.Children.forEach(props.children, function(child) {
+                  React17.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23593,7 +23593,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React12 = require_react();
+          var React17 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23619,7 +23619,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React17.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24469,11 +24469,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx14 = jsxWithValidationDynamic;
-          var jsxs9 = jsxWithValidationStatic;
+          var jsx19 = jsxWithValidationDynamic;
+          var jsxs14 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx14;
-          exports.jsxs = jsxs9;
+          exports.jsx = jsx19;
+          exports.jsxs = jsxs14;
         })();
       }
     }
@@ -24492,7 +24492,7 @@
   });
 
   // app/javascript/src/index.tsx
-  var import_react10 = __toESM(require_react());
+  var import_react15 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-router-dom/dist/index.js
@@ -29056,21 +29056,22 @@
       localStorage.removeItem("jwt");
       window.location.href = "/";
     };
+    const handleCreateProject = () => {
+      navigate("/projects/new");
+    };
+    const handleViewProjects = () => {
+      navigate("/projects");
+    };
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("nav", { className: "navbar", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "navbar-container", children: [
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "navbar-brand", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { to: "/", className: "navbar-link", children: "Kulu App" }) }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "navbar-links", children: user ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "navbar-user", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { onClick: handleCreateProject, className: "navbar-button", children: "Create Project" }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { onClick: handleViewProjects, className: "navbar-button", children: "View Projects" }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(Link, { to: "/profile", className: "navbar-profile", children: [
           /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "avatar", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "avatar-text", children: user.first_name[0] }) }),
           /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: "Profile" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
-          "button",
-          {
-            onClick: handleLogout,
-            className: "navbar-logout",
-            children: "Sign Out"
-          }
-        )
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { onClick: handleLogout, className: "navbar-logout", children: "Sign Out" })
       ] }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(GoogleLoginButton_default, {}) })
     ] }) });
   };
@@ -29143,7 +29144,7 @@
   };
   var ProjectsList_default = ProjectsList;
 
-  // app/javascript/src/components/CreateProject.tsx
+  // app/javascript/src/components/project/CreateProject.tsx
   var import_react6 = __toESM(require_react());
   var import_jsx_runtime7 = __toESM(require_jsx_runtime());
   var CreateProject = () => {
@@ -29196,10 +29197,10 @@
   };
   var CreateProject_default = CreateProject;
 
-  // app/javascript/src/components/ProjectDetail.tsx
-  var import_react7 = __toESM(require_react());
+  // app/javascript/src/components/project/ProjectDetail.tsx
+  var import_react9 = __toESM(require_react());
 
-  // app/javascript/src/components/DeleteProject.tsx
+  // app/javascript/src/components/project/DeleteProject.tsx
   var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   var DeleteProject = ({ id }) => {
     const navigate = useNavigate();
@@ -29211,19 +29212,101 @@
         console.error("Error deleting project:", error);
       });
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { onClick: handleDelete, children: "Delete Project" });
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: "deletebtn", onClick: handleDelete, children: "Delete Project" });
   };
   var DeleteProject_default = DeleteProject;
 
-  // app/javascript/src/components/ProjectDetail.tsx
+  // app/javascript/src/components/project/InviteMember.tsx
+  var import_react7 = __toESM(require_react());
   var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var InviteMember = ({ projectId }) => {
+    const [email, setEmail] = (0, import_react7.useState)("");
+    const [message, setMessage] = (0, import_react7.useState)(null);
+    const handleInvite = () => {
+      api_default.post(`/projects/${projectId}/invite`, { email }).then(() => {
+        setMessage("User invited successfully");
+        setEmail("");
+      }).catch(() => {
+        setMessage("Unable to invite user");
+      });
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h3", { children: "Invite Member" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        "input",
+        {
+          type: "email",
+          placeholder: "Enter email address",
+          value: email,
+          onChange: (e) => setEmail(e.target.value),
+          required: true
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: handleInvite, children: "Invite" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: message })
+    ] });
+  };
+  var InviteMember_default = InviteMember;
+
+  // app/javascript/src/components/ProjectTasks.tsx
+  var import_react8 = __toESM(require_react());
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
+  var ProjectTasks = () => {
+    const { projectId } = useParams();
+    const [tasks, setTasks] = (0, import_react8.useState)([]);
+    const [error, setError] = (0, import_react8.useState)(null);
+    (0, import_react8.useEffect)(() => {
+      if (!projectId) {
+        setError("Project ID is missing.");
+        return;
+      }
+      api_default.get(`/projects/${projectId}/tasks`).then((response) => {
+        if (Array.isArray(response.data)) {
+          setTasks(response.data);
+          setError(null);
+        } else {
+          setError("Received data is not an array of tasks.");
+        }
+      }).catch((err) => {
+        setError("Failed to fetch tasks.");
+        console.error("Error fetching tasks:", err);
+      });
+    }, [projectId]);
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("h3", { children: [
+        "Tasks for Project ",
+        projectId
+      ] }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "text-red-500", children: error }),
+      tasks.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: "No tasks found for this project." }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("ul", { children: tasks.map((task) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("li", { className: "mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h4", { className: "font-bold", children: task.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: task.description }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("p", { children: [
+          "Status: ",
+          task.completed ? "Completed" : "Incomplete"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          "button",
+          {
+            className: "bg-blue-500 text-white px-4 py-2 rounded",
+            onClick: () => console.log(`Complete task ${task.id}`),
+            children: "Complete Task"
+          }
+        ) })
+      ] }, task.id)) })
+    ] });
+  };
+  var ProjectTasks_default = ProjectTasks;
+
+  // app/javascript/src/components/project/ProjectDetail.tsx
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
   var ProjectDetail = () => {
     const { id } = useParams();
-    const [project, setProject] = (0, import_react7.useState)(null);
-    const [name, setName] = (0, import_react7.useState)("");
-    const [description, setDescription] = (0, import_react7.useState)("");
+    const [project, setProject] = (0, import_react9.useState)(null);
+    const [name, setName] = (0, import_react9.useState)("");
+    const [description, setDescription] = (0, import_react9.useState)("");
     const navigate = useNavigate();
-    (0, import_react7.useEffect)(() => {
+    (0, import_react9.useEffect)(() => {
       if (id) {
         api_default.get(`/projects/${id}`).then((response) => {
           setProject(response.data);
@@ -29244,13 +29327,13 @@
         });
       }
     };
-    if (!project) return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: "Loading project..." });
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { children: project.name }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: project.description }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h3", { children: "Edit Project" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("form", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+    if (!project) return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: "Loading project..." });
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h2", { children: project.name }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: project.description }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h3", { children: "Edit Project" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("form", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
           "input",
           {
             type: "text",
@@ -29259,7 +29342,7 @@
             required: true
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
           "textarea",
           {
             value: description,
@@ -29267,100 +29350,204 @@
             required: true
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: handleUpdate, children: "Update Project" })
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", onClick: handleUpdate, children: "Update Project" })
       ] }),
-      id && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(DeleteProject_default, { id })
+      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(DeleteProject_default, { id }),
+      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(InviteMember_default, { projectId: id }),
+      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ProjectTasks_default, {})
     ] });
   };
   var ProjectDetail_default = ProjectDetail;
 
-  // app/javascript/src/components/InviteMember.tsx
-  var import_react8 = __toESM(require_react());
-  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
-  var InviteMember = ({ projectId }) => {
-    const [email, setEmail] = (0, import_react8.useState)("");
-    const [message, setMessage] = (0, import_react8.useState)(null);
-    const handleInvite = () => {
-      axios_default.post(`/api/v1/projects/${projectId}/invite`, { email }).then(() => {
-        setMessage("User invited successfully");
-        setEmail("");
+  // app/javascript/src/components/PrivateRoute.tsx
+  var import_react10 = __toESM(require_react());
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
+  var PrivateRoute = ({ children }) => {
+    const { user } = (0, import_react10.useContext)(AuthContext);
+    return user ? children : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Navigate, { to: "/" });
+  };
+
+  // app/javascript/src/components/task/CreateTask.tsx
+  var import_react11 = __toESM(require_react());
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var CreateTask = () => {
+    const { projectId } = useParams();
+    const navigate = useNavigate();
+    const [title, setTitle] = (0, import_react11.useState)("");
+    const [description, setDescription] = (0, import_react11.useState)("");
+    const [message, setMessage] = (0, import_react11.useState)(null);
+    const handleSubmit = () => {
+      api_default.post(`/projects/${projectId}/tasks`, { title, description }).then((response) => {
+        setMessage("Task created successfully");
+        setTitle("");
+        setDescription("");
+        navigate(`/projects/${projectId}/tasks`);
       }).catch(() => {
-        setMessage("Unable to invite user");
+        setMessage("Unable to create task");
       });
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h3", { children: "Invite Member" }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h3", { children: "Create Task" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         "input",
         {
-          type: "email",
-          placeholder: "Enter email address",
-          value: email,
-          onChange: (e) => setEmail(e.target.value),
+          type: "text",
+          placeholder: "Task title",
+          value: title,
+          onChange: (e) => setTitle(e.target.value),
           required: true
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", onClick: handleInvite, children: "Invite" }),
-      message && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: message })
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+        "textarea",
+        {
+          placeholder: "Task description",
+          value: description,
+          onChange: (e) => setDescription(e.target.value)
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: handleSubmit, children: "Create Task" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: message })
     ] });
   };
-  var InviteMember_default = InviteMember;
+  var CreateTask_default = CreateTask;
 
-  // app/javascript/src/components/PrivateRoute.tsx
-  var import_react9 = __toESM(require_react());
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
-  var PrivateRoute = ({ children }) => {
-    const { user } = (0, import_react9.useContext)(AuthContext);
-    return user ? children : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Navigate, { to: "/" });
+  // app/javascript/src/components/task/CompleteTask.tsx
+  var import_react12 = __toESM(require_react());
+  var import_jsx_runtime14 = __toESM(require_jsx_runtime());
+  var CompleteTask = ({ taskId }) => {
+    const [message, setMessage] = (0, import_react12.useState)(null);
+    const handleComplete = () => {
+      api_default.patch(`/tasks/${taskId}/complete`, { completed: true }).then((response) => {
+        setMessage("Task marked as completed");
+      }).catch(() => {
+        setMessage("Unable to complete task");
+      });
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", onClick: handleComplete, children: "Mark as Completed" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { children: message })
+    ] });
   };
+  var CompleteTask_default = CompleteTask;
+
+  // app/javascript/src/components/task/UpdateTask.tsx
+  var import_react13 = __toESM(require_react());
+  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  var UpdateTask = ({ taskId }) => {
+    const [title, setTitle] = (0, import_react13.useState)("");
+    const [description, setDescription] = (0, import_react13.useState)("");
+    const [message, setMessage] = (0, import_react13.useState)(null);
+    (0, import_react13.useEffect)(() => {
+      api_default.get(`/api/v1/tasks/${taskId}`).then((response) => {
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+      }).catch(() => {
+        setMessage("Unable to fetch task details");
+      });
+    }, [taskId]);
+    const handleSubmit = () => {
+      api_default.patch(`/tasks/${taskId}`, { title, description }).then(() => {
+        setMessage("Task updated successfully");
+      }).catch(() => {
+        setMessage("Unable to update task");
+      });
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h3", { children: "Update Task" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+        "input",
+        {
+          type: "text",
+          value: title,
+          onChange: (e) => setTitle(e.target.value),
+          required: true
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+        "textarea",
+        {
+          value: description,
+          onChange: (e) => setDescription(e.target.value)
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: handleSubmit, children: "Update Task" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: message })
+    ] });
+  };
+  var UpdateTask_default = UpdateTask;
+
+  // app/javascript/src/components/task/DeleteTask.tsx
+  var import_react14 = __toESM(require_react());
+  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
+  var DeleteTask = ({ taskId }) => {
+    const [message, setMessage] = (0, import_react14.useState)(null);
+    const handleDelete = () => {
+      api_default.delete(`/tasks/${taskId}`).then(() => {
+        setMessage("Task deleted successfully");
+      }).catch(() => {
+        setMessage("Unable to delete task");
+      });
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { type: "button", onClick: handleDelete, children: "Delete Task" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: message })
+    ] });
+  };
+  var DeleteTask_default = DeleteTask;
 
   // app/javascript/src/App.tsx
-  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
   var App = () => {
-    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(AuthProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(BrowserRouter, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Navbar_default, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "container mx-auto p-4", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(Routes, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Route, { path: "/auth/callback", element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(OAuthCallback_default, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(AuthProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(BrowserRouter, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Navbar_default, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "container mx-auto p-4", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Routes, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/auth/callback", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(OAuthCallback_default, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/profile",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(UserProfile_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(UserProfile_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/projects/:projectId/tasks", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectTasks_default, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/projects/:projectId/tasks/create", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CreateTask_default, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/update", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(UpdateTask_default, { taskId: "" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/complete", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CompleteTask_default, { taskId: "" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/delete", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeleteTask_default, { taskId: "" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/projects",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ProjectsList_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectsList_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/projects/new",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(CreateProject_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CreateProject_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/projects/:id",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ProjectDetail_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectDetail_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/projects/:id/delete",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(DeleteProject_default, { id: "" }) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeleteProject_default, { id: "" }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           Route,
           {
             path: "/projects/:id/invite",
-            element: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(InviteMember_default, { projectId: "" }) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(InviteMember_default, { projectId: "" }) })
           }
         )
       ] }) })
@@ -29369,10 +29556,10 @@
   var App_default = App;
 
   // app/javascript/src/index.tsx
-  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime18 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_react10.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_react10.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { children: "Loading..." }), children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(App_default, {}) }) })
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_react15.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_react15.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: "Loading..." }), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(App_default, {}) }) })
   );
 })();
 /*! Bundled license information:

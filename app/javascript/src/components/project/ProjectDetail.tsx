@@ -1,8 +1,11 @@
+// src/components/ProjectDetail.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../services/api'; // Import custom API instance
-import DeleteProject from './DeleteProject'; // Import the DeleteProject component
-
+import api from '../../services/api'; 
+import DeleteProject from './DeleteProject'; 
+import InviteMember from './InviteMember'; 
+import '../../styles/Project.css';
+import ProjectTasks from '../ProjectTasks';
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<any | null>(null);
@@ -12,7 +15,6 @@ const ProjectDetail: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      // Fetch project data only if id is available
       api.get(`/projects/${id}`)
         .then((response) => {
           setProject(response.data);
@@ -61,8 +63,10 @@ const ProjectDetail: React.FC = () => {
         <button type="button" onClick={handleUpdate}>Update Project</button>
       </form>
 
-      {/* Integrating DeleteProject component here */}
+      {/* Integrating DeleteProject and InviteMember components */}
       {id && <DeleteProject id={id} />}
+      {id && <InviteMember projectId={id} />}
+      {id && <ProjectTasks/>}
     </div>
   );
 };

@@ -17,6 +17,10 @@
     border: none;
     cursor: pointer;
   }
+
+  .deletebtn{
+    background-color: red;
+  }
   
   button:hover {
     background-color: #45a049;

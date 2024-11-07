@@ -79,6 +79,20 @@
 .navbar-login:hover {
   background-color: #3b44cc;
 }
+.navbar-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: #45a049;
+}
+
+/* app/javascript/src/styles/Project.css */
 .error {
   color: red;
   margin-top: 10px;
@@ -95,6 +109,9 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+}
+.deletebtn {
+  background-color: red;
 }
 button:hover {
   background-color: #45a049;
