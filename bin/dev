@@ -9,3 +9,5 @@ fi
 export PORT="${PORT:-3000}"
 
 exec foreman start -f Procfile.dev --env /dev/null "$@"
+# Use esbuild with watch mode
+web: esbuild src/main.js --bundle --outfile=dist/main.js --watch --servedir=dist

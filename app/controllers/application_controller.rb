@@ -1,12 +1,16 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
-  before_action :set_raven_context
+
+  before_action :set_sentry_context
+  protect_from_forgery with: :null_session
 
   private
 
-  def set_raven_context
-    Sentry.set_user(id: session[:current_user_id])
-    # Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  def set_sentry_context
+    Sentry.set_user(id: session[:current_user_id]) # or any other relevant user information
+    Sentry.set_extras(params: params.to_unsafe_h, url: request.url)
+  end
+
+  def set_format
+    request.format = :json
   end
 end

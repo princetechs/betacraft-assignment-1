@@ -1,16 +1,28 @@
-# README
+# Kulu Assignment
 
-## Background & Vision
+This is a project built using **Ruby on Rails** (Backend) and **React** (Frontend) for managing tasks and projects. The application supports features like task creation, user authentication, commenting, and project management.
 
-Ratnadeep personally likes to share conference talk videos with other devs as reference material. Especially when it’s good for the exact same thing that another person is trying to learn. There are many long lived talks - like ones talking about good object oriented programming with Ruby. Then there are also some which are good to keep up with upcoming tech - like keynotes that talk about upcoming Ruby or Rails versions.  
+## Tech Stack
 
-The way to discover these talks is either by recommendations by someone or finding one by serendipity. This website will solve this problem of discovery of tech talks for users.
+- **Backend**: Ruby on Rails 7.2
+- **Frontend**: React (with Esbuild)
+- **Authentication**: Devise with Google OAuth2
+- **Task Queue**: Sidekiq (for background jobs)
+- **Containerization**: Docker
+
+## Prerequisites
+
+Before setting up the project, ensure you have the following installed on your system:
+
+- Ruby (>= 3.x)
+- Node.js (>= 16.x)
+- Yarn (for managing frontend packages)
+- Docker (optional, for containerization)
 
 ## Setup
 
-- bundle
-- yarn
+### 1. Clone the repository
 
-## run
-
-- bin/dev
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>

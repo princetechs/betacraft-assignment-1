@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
-
+# Gemfile
+gem 'googleauth'
 ruby '3.3.0'
 gem 'omniauth-google-oauth2'
-gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'jwt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2.1'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -11,7 +13,6 @@ gem "sprockets-rails"
 # Use Puma as the app server
 gem 'puma', '~> 6.4', '>= 6.4.2'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_071130) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_07_125528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_071130) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_comment_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -81,6 +83,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_071130) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "tokens", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "content", default: "", null: false
+    t.integer "active_status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_tokens_on_content", unique: true
+    t.index ["user_id"], name: "index_tokens_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -102,4 +114,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_071130) do
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users"
+  add_foreign_key "tokens", "users"
 end
