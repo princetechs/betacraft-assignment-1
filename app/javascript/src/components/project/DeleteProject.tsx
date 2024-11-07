@@ -9,7 +9,6 @@ const DeleteProject: React.FC<{ id: string }> = ({ id }) => {
   const handleDelete = async () => {
     try {
       await api.delete(`/projects/${id}`);
-      console.log('Project deleted');
       navigate('/projects');
     } catch (error) {
       console.error('Error deleting project:', error);

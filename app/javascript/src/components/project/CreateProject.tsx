@@ -11,7 +11,6 @@ const CreateProject: React.FC = () => {
     e.preventDefault();
     try {
       const response = await api.post('/projects', { project: { name, description } });
-      console.log('Project created:', response.data);
       setName('');
       setDescription('');
     } catch (error) {

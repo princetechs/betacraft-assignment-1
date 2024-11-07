@@ -16,13 +16,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       token = Token.token_for_user(@user)
       redirect_to "http://localhost:3000/auth/callback?token=#{token}"
 
-      # Always return a JSON response, since we are only working with API requests
-      # render json: {
-      #   success: true,
-      #   message: "#{kind} login successful.",
-      #   token:,
-      #   user: @user
-      # }, status: :ok
     else
       render json: {
         success: false,

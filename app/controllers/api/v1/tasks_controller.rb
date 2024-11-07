@@ -7,7 +7,6 @@ module Api
       # GET /api/v1/projects/:project_id/tasks
       def index
         tasks = @project.tasks
-        puts "........devsan #{@project}"
         render json: tasks, status: :ok
       end
       # Create a task for a project

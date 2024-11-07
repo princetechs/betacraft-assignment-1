@@ -26,10 +26,8 @@ const TaskList: React.FC<TaskListProps> = ({ projectId }) => {
 
     try {
       setError(null);
-      console.log(`Fetching tasks for project ID: ${projectId}`);
       
       const response = await api.get(`/projects/${projectId}/tasks`);
-      console.log('API response:', response);
 
       if (Array.isArray(response.data)) {
         setTasks(response.data);
