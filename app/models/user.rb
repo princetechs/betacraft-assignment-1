@@ -21,19 +21,33 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :omniauthable, 
-          omniauth_providers: [:google_oauth2]
+         omniauth_providers: [:google_oauth2]
+         
 
-          has_many :projects
-          has_many :tasks
-          has_many :comments
-          has_many :project_memberships
-          has_many :joined_projects, through: :project_memberships, source: :project
-          
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.password = Devise.friendly_token[0, 20] # Random password for user
-    end
+  # Associations
+  has_many :tokens
+  has_many :projects
+  has_many :tasks
+  has_many :comments
+  has_many :project_memberships
+  has_many :joined_projects, through: :project_memberships, source: :project
+
+  # Validations
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: true
+
+  def self.from_omniauth(access_token)
+    user = User.where(email: access_token.info.email).first
+    user ||= User.create(
+      email: access_token.info.email,
+      password: Devise.friendly_token[0, 20]
+    )
+    # user.name = access_token.info.name
+    # user.image = access_token.info.image
+    # user.uid = access_token.uid
+    # user.provider = access_token.provider
+    user.save
+    user
   end
 end
