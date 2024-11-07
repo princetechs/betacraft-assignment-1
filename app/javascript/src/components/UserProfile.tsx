@@ -1,20 +1,27 @@
-// src/components/UserProfile.tsx
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 interface User {
-  name: string;
+  id: number;
   email: string;
+  first_name: string;
+  last_name: string;
 }
 
-interface UserProfileProps {
-  user: User;
-}
-
-const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
+const UserProfile: React.FC = () => {
+  const { user } = useContext(AuthContext);
+  
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+  
   return (
-    <div>
-      <h1>Welcome, {user.name}</h1>
-      <p>Email: {user.email}</p>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">Profile</h1>
+      <div className="mt-4">
+        <p>Name: {user.first_name} {user.last_name}</p>
+        <p>Email: {user.email}</p>
+      </div>
     </div>
   );
 };

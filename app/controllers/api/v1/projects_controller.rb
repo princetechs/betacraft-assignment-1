@@ -1,6 +1,6 @@
-class Api::V1::ProjectsController < Api::V1::BaseController
-    skip_before_action :verify_authenticity_token
-  
+module Api
+  module V1
+    class ProjectsController < BaseController
     before_action :set_user, only: [:index, :create]
     before_action :set_project, only: [:show, :update, :destroy, :invite_member]
   
@@ -57,8 +57,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       private
   
     def set_user
-      # Replace this with the actual method of retrieving the user; for now, we're using a user_id parameter.
-      @user = User.find(params[:user_id])
+      @user = current_user
     end
   
     def set_project
@@ -70,4 +69,5 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       params.require(:project).permit(:name, :description)
     end
   end
-  
+end
+end

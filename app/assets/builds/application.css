@@ -1,0 +1,102 @@
+/* app/javascript/src/styles/Navbar.css */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e5e7eb;
+}
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.navbar-link {
+  color: #4c51bf;
+  text-decoration: none;
+}
+.navbar-link:hover {
+  color: #3b44cc;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #4a5568;
+}
+.navbar-profile:hover {
+  color: #3b44cc;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #edf2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-text {
+  color: #4c51bf;
+  font-weight: bold;
+}
+.navbar-logout {
+  background-color: white;
+  color: #e53e3e;
+  border: 1px solid #e53e3e;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.navbar-logout:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+.navbar-login {
+  background-color: #4c51bf;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.navbar-login:hover {
+  background-color: #3b44cc;
+}
+.error {
+  color: red;
+  margin-top: 10px;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+}
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #45a049;
+}
+/*# sourceMappingURL=/assets/application.css.map */

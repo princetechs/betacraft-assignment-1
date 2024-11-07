@@ -1,3 +1,4 @@
+require 'json_web_token'
 class AuthenticateTokenService
 
     attr_reader :request
