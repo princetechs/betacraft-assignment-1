@@ -29,21 +29,22 @@ Rails.application.routes.draw do
       resources :projects, only: [:index, :show, :create, :update, :destroy] do
         member do
           post :invite # Custom route to invite users to a project
+          get :members # Adds GET /api/v1/projects/:id/members
         end
 
         # Nested resources for tasks and project memberships
-        resources :tasks, only: [:show, :create] do
+        resources :tasks, only: [:index, :create, :update, :destroy] do
           member do
             patch :complete # Mark a task as completed
+          end
+
+          # Nested comments under tasks, with nested comments under each comment
+          resources :comments, only: [:create, :index] do
+            resources :comments, only: [:create, :index], controller: 'comments'
           end
         end
 
         resources :project_memberships, only: [:create] # Invite a user to the project
-      end
-
-      # Task routes (CRUD) with nested comments
-      resources :tasks, only: [:create, :update, :destroy] do
-        resources :comments, only: [:create, :update, :destroy] # Comment actions for tasks
       end
     end
   end

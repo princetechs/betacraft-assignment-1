@@ -1089,7 +1089,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState13(initialState) {
+          function useState15(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1101,7 +1101,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect9(create, deps) {
+          function useEffect11(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1884,7 +1884,7 @@
           exports.useContext = useContext6;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect9;
+          exports.useEffect = useEffect11;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1892,7 +1892,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState13;
+          exports.useState = useState15;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2388,9 +2388,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React17 = require_react();
+          var React19 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React17.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React19.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3997,7 +3997,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React17.Children.forEach(props.children, function(child) {
+                  React19.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23593,7 +23593,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React17 = require_react();
+          var React19 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23619,7 +23619,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React17.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React19.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24469,11 +24469,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx19 = jsxWithValidationDynamic;
-          var jsxs14 = jsxWithValidationStatic;
+          var jsx22 = jsxWithValidationDynamic;
+          var jsxs17 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx19;
-          exports.jsxs = jsxs14;
+          exports.jsx = jsx22;
+          exports.jsxs = jsxs17;
         })();
       }
     }
@@ -24492,7 +24492,7 @@
   });
 
   // app/javascript/src/index.tsx
-  var import_react15 = __toESM(require_react());
+  var import_react17 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-router-dom/dist/index.js
@@ -29128,18 +29128,18 @@
     (0, import_react5.useEffect)(() => {
       const fetchProjects = async () => {
         try {
-          const { data } = await api_default.get("/projects");
-          setProjects(data);
+          const response = await api_default.get("/projects");
+          setProjects(response.data);
         } catch (error) {
-          console.error("Failed to fetch projects", error);
+          console.error("Error fetching projects:", error);
         }
       };
       fetchProjects();
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { className: "text-2xl font-semibold mb-4", children: "Projects" }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { children: projects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("li", { className: "mb-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Link, { to: `/projects/${project.id}`, className: "text-blue-500 hover:text-blue-700", children: project.name }) }, project.id)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Link, { to: "/projects/new", className: "text-blue-500 hover:text-blue-700 mt-4 inline-block", children: "Create New Project" })
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { children: "Projects" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { children: projects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Link, { to: `/projects/${project.id}`, children: project.name }) }, project.id)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Link, { to: "/projects/new", children: "Create New Project" })
     ] });
   };
   var ProjectsList_default = ProjectsList;
@@ -29151,68 +29151,61 @@
     const [name, setName] = (0, import_react6.useState)("");
     const [description, setDescription] = (0, import_react6.useState)("");
     const [error, setError] = (0, import_react6.useState)(null);
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      api_default.post("/projects", { project: { name, description } }).then((response) => {
-        console.log("Project created successfully:", response.data);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await api_default.post("/projects", { project: { name, description } });
+        console.log("Project created:", response.data);
         setName("");
         setDescription("");
-      }).catch((error2) => {
+      } catch (error2) {
         setError("Error creating project");
         console.error(error2);
-      });
+      }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h1", { children: "Create a New Project" }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("form", { onSubmit: handleSubmit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("label", { htmlFor: "name", children: "Project Name" }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-            "input",
-            {
-              type: "text",
-              id: "name",
-              value: name,
-              onChange: (e) => setName(e.target.value),
-              required: true
-            }
-          )
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("label", { htmlFor: "description", children: "Description" }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-            "textarea",
-            {
-              id: "description",
-              value: description,
-              onChange: (e) => setDescription(e.target.value),
-              required: true
-            }
-          )
-        ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { type: "submit", children: "Create Project" })
-      ] })
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("form", { onSubmit: handleSubmit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "input",
+        {
+          type: "text",
+          placeholder: "Project Name",
+          value: name,
+          onChange: (e) => setName(e.target.value),
+          required: true
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "textarea",
+        {
+          placeholder: "Description",
+          value: description,
+          onChange: (e) => setDescription(e.target.value),
+          required: true
+        }
+      ),
+      error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("p", { className: "error", children: error }),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { type: "submit", children: "Create Project" })
     ] });
   };
   var CreateProject_default = CreateProject;
 
   // app/javascript/src/components/project/ProjectDetail.tsx
-  var import_react9 = __toESM(require_react());
+  var import_react12 = __toESM(require_react());
 
   // app/javascript/src/components/project/DeleteProject.tsx
   var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   var DeleteProject = ({ id }) => {
     const navigate = useNavigate();
-    const handleDelete = () => {
-      api_default.delete(`/projects/${id}`).then(() => {
-        console.log("Project deleted successfully");
+    const handleDelete = async () => {
+      try {
+        await api_default.delete(`/projects/${id}`);
+        console.log("Project deleted");
         navigate("/projects");
-      }).catch((error) => {
+      } catch (error) {
         console.error("Error deleting project:", error);
-      });
+      }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: "deletebtn", onClick: handleDelete, children: "Delete Project" });
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: "delete", onClick: handleDelete, children: "Delete Project" });
   };
   var DeleteProject_default = DeleteProject;
 
@@ -29222,16 +29215,16 @@
   var InviteMember = ({ projectId }) => {
     const [email, setEmail] = (0, import_react7.useState)("");
     const [message, setMessage] = (0, import_react7.useState)(null);
-    const handleInvite = () => {
-      api_default.post(`/projects/${projectId}/invite`, { email }).then(() => {
+    const handleInvite = async () => {
+      try {
+        await api_default.post(`/projects/${projectId}/invite`, { email });
         setMessage("User invited successfully");
         setEmail("");
-      }).catch(() => {
+      } catch {
         setMessage("Unable to invite user");
-      });
+      }
     };
     return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h3", { children: "Invite Member" }),
       /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
         "input",
         {
@@ -29242,181 +29235,346 @@
           required: true
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: handleInvite, children: "Invite" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { onClick: handleInvite, children: "Invite" }),
       message && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: message })
     ] });
   };
   var InviteMember_default = InviteMember;
 
-  // app/javascript/src/components/ProjectTasks.tsx
+  // app/javascript/src/components/task/CreateTask.tsx
   var import_react8 = __toESM(require_react());
   var import_jsx_runtime10 = __toESM(require_jsx_runtime());
-  var ProjectTasks = () => {
-    const { projectId } = useParams();
-    const [tasks, setTasks] = (0, import_react8.useState)([]);
+  var CreateTask = ({ projectId, onTaskCreated }) => {
+    const [title, setTitle] = (0, import_react8.useState)("");
+    const [description, setDescription] = (0, import_react8.useState)("");
+    const [assigneeId, setAssigneeId] = (0, import_react8.useState)(null);
+    const [members, setMembers] = (0, import_react8.useState)([]);
     const [error, setError] = (0, import_react8.useState)(null);
-    (0, import_react8.useEffect)(() => {
-      if (!projectId) {
-        setError("Project ID is missing.");
-        return;
-      }
-      api_default.get(`/projects/${projectId}/tasks`).then((response) => {
-        if (Array.isArray(response.data)) {
-          setTasks(response.data);
-          setError(null);
-        } else {
-          setError("Received data is not an array of tasks.");
-        }
-      }).catch((err) => {
-        setError("Failed to fetch tasks.");
-        console.error("Error fetching tasks:", err);
-      });
-    }, [projectId]);
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("h3", { children: [
-        "Tasks for Project ",
-        projectId
-      ] }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "text-red-500", children: error }),
-      tasks.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: "No tasks found for this project." }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("ul", { children: tasks.map((task) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("li", { className: "mb-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h4", { className: "font-bold", children: task.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: task.description }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("p", { children: [
-          "Status: ",
-          task.completed ? "Completed" : "Incomplete"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
-          "button",
-          {
-            className: "bg-blue-500 text-white px-4 py-2 rounded",
-            onClick: () => console.log(`Complete task ${task.id}`),
-            children: "Complete Task"
-          }
-        ) })
-      ] }, task.id)) })
-    ] });
-  };
-  var ProjectTasks_default = ProjectTasks;
-
-  // app/javascript/src/components/project/ProjectDetail.tsx
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
-  var ProjectDetail = () => {
-    const { id } = useParams();
-    const [project, setProject] = (0, import_react9.useState)(null);
-    const [name, setName] = (0, import_react9.useState)("");
-    const [description, setDescription] = (0, import_react9.useState)("");
-    const navigate = useNavigate();
-    (0, import_react9.useEffect)(() => {
-      if (id) {
-        api_default.get(`/projects/${id}`).then((response) => {
-          setProject(response.data);
-          setName(response.data.name);
-          setDescription(response.data.description);
-        }).catch((error) => {
-          console.error("Error fetching project:", error);
-        });
-      }
-    }, [id]);
-    const handleUpdate = () => {
-      if (id) {
-        api_default.patch(`/projects/${id}`, { project: { name, description } }).then((response) => {
-          setProject(response.data);
-          navigate(`/projects/${id}`);
-        }).catch((error) => {
-          console.error("Error updating project:", error);
-        });
+    const fetchMembers = async () => {
+      try {
+        const response = await api_default.get(`/projects/${projectId}/members`);
+        setMembers(response.data);
+      } catch (error2) {
+        console.error("Error fetching members:", error2);
       }
     };
-    if (!project) return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: "Loading project..." });
-    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h2", { children: project.name }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: project.description }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h3", { children: "Edit Project" }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("form", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-          "input",
-          {
-            type: "text",
-            value: name,
-            onChange: (e) => setName(e.target.value),
-            required: true
+    (0, import_react8.useEffect)(() => {
+      fetchMembers();
+    }, [projectId]);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        await api_default.post(`/projects/${projectId}/tasks`, {
+          task: {
+            title,
+            description,
+            user_id: assigneeId
+            // Pass the selected member's ID
           }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-          "textarea",
-          {
-            value: description,
-            onChange: (e) => setDescription(e.target.value),
-            required: true
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", onClick: handleUpdate, children: "Update Project" })
-      ] }),
-      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(DeleteProject_default, { id }),
-      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(InviteMember_default, { projectId: id }),
-      id && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ProjectTasks_default, {})
-    ] });
-  };
-  var ProjectDetail_default = ProjectDetail;
-
-  // app/javascript/src/components/PrivateRoute.tsx
-  var import_react10 = __toESM(require_react());
-  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
-  var PrivateRoute = ({ children }) => {
-    const { user } = (0, import_react10.useContext)(AuthContext);
-    return user ? children : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Navigate, { to: "/" });
-  };
-
-  // app/javascript/src/components/task/CreateTask.tsx
-  var import_react11 = __toESM(require_react());
-  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
-  var CreateTask = () => {
-    const { projectId } = useParams();
-    const navigate = useNavigate();
-    const [title, setTitle] = (0, import_react11.useState)("");
-    const [description, setDescription] = (0, import_react11.useState)("");
-    const [message, setMessage] = (0, import_react11.useState)(null);
-    const handleSubmit = () => {
-      api_default.post(`/projects/${projectId}/tasks`, { title, description }).then((response) => {
-        setMessage("Task created successfully");
+        });
         setTitle("");
         setDescription("");
-        navigate(`/projects/${projectId}/tasks`);
-      }).catch(() => {
-        setMessage("Unable to create task");
-      });
+        setAssigneeId(null);
+        onTaskCreated();
+      } catch (error2) {
+        setError("Error creating task");
+        console.error(error2);
+      }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h3", { children: "Create Task" }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("form", { onSubmit: handleSubmit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "input",
         {
           type: "text",
-          placeholder: "Task title",
+          placeholder: "Task Title",
           value: title,
           onChange: (e) => setTitle(e.target.value),
           required: true
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "textarea",
         {
-          placeholder: "Task description",
+          placeholder: "Description",
           value: description,
-          onChange: (e) => setDescription(e.target.value)
+          onChange: (e) => setDescription(e.target.value),
+          required: true
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: handleSubmit, children: "Create Task" }),
-      message && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: message })
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+        "select",
+        {
+          value: assigneeId || "",
+          onChange: (e) => setAssigneeId(Number(e.target.value)),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("option", { value: "", children: "Select Assignee" }),
+            members.map((member) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("option", { value: member.id, children: [
+              member.first_name,
+              " ",
+              member.last_name,
+              " (",
+              member.email,
+              ")"
+            ] }, member.id))
+          ]
+        }
+      ),
+      error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "error", children: error }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "submit", children: "Create Task" })
     ] });
   };
   var CreateTask_default = CreateTask;
 
-  // app/javascript/src/components/task/CompleteTask.tsx
-  var import_react12 = __toESM(require_react());
+  // app/javascript/src/components/task/TaskList.tsx
+  var import_react11 = __toESM(require_react());
+
+  // app/javascript/src/components/task/TaskDetail.tsx
+  var import_react10 = __toESM(require_react());
+
+  // app/javascript/src/components/Comments.tsx
+  var import_react9 = __toESM(require_react());
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  var Comments = ({ taskId, projectId }) => {
+    const [comments, setComments] = (0, import_react9.useState)([]);
+    const [newComment, setNewComment] = (0, import_react9.useState)("");
+    const [loading, setLoading] = (0, import_react9.useState)(true);
+    const [error, setError] = (0, import_react9.useState)(null);
+    (0, import_react9.useEffect)(() => {
+      const fetchComments = async () => {
+        try {
+          const response = await api_default.get(`/projects/${projectId}/tasks/${taskId}/comments`);
+          setComments(response.data);
+        } catch (error2) {
+          setError("Error fetching comments");
+          console.error("Error fetching comments:", error2);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchComments();
+    }, [taskId, projectId]);
+    const handleCommentSubmit = async (e) => {
+      e.preventDefault();
+      if (!newComment) return;
+      try {
+        const response = await api_default.post(`/projects/${projectId}/tasks/${taskId}/comments`, {
+          comment: { content: newComment }
+        });
+        setComments([response.data, ...comments]);
+        setNewComment("");
+      } catch (error2) {
+        setError("Error submitting comment");
+        console.error("Error submitting comment:", error2);
+      }
+    };
+    if (loading) return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { children: "Loading comments..." });
+    if (error) return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { children: error });
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "comments-section", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h4", { children: "Comments" }),
+      comments.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { children: "No comments available" }),
+      comments.map((comment) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "comment", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("strong", { children: [
+          comment.user?.first_name ?? "Unknown User",
+          " ",
+          comment.user?.last_name ?? ""
+        ] }),
+        ": ",
+        comment.content
+      ] }) }, comment.id)),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("form", { onSubmit: handleCommentSubmit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "textarea",
+          {
+            value: newComment,
+            onChange: (e) => setNewComment(e.target.value),
+            placeholder: "Add a comment..."
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "submit", children: "Submit Comment" })
+      ] })
+    ] });
+  };
+  var Comments_default = Comments;
+
+  // app/javascript/src/components/task/TaskDetail.tsx
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
+  var TaskDetail = ({
+    task,
+    onTaskUpdated,
+    onTaskDeleted
+  }) => {
+    const [title, setTitle] = (0, import_react10.useState)(task.title);
+    const [description, setDescription] = (0, import_react10.useState)(task.description);
+    const [isEditing, setIsEditing] = (0, import_react10.useState)(false);
+    const handleUpdate = async () => {
+      try {
+        await api_default.patch(`/projects/${task.project_id}/tasks/${task.id}`, { task: { title, description } });
+        onTaskUpdated();
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating task:", error);
+      }
+    };
+    const handleDelete = async () => {
+      try {
+        await api_default.delete(`/projects/${task.project_id}/tasks/${task.id}`);
+        onTaskDeleted();
+      } catch (error) {
+        console.error("Error deleting task:", error);
+      }
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "task-detail", children: isEditing ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "task-edit-form", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        "input",
+        {
+          type: "text",
+          className: "task-title-input",
+          value: title,
+          onChange: (e) => setTitle(e.target.value),
+          placeholder: "Task Title"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        "textarea",
+        {
+          className: "task-description-input",
+          value: description,
+          onChange: (e) => setDescription(e.target.value),
+          placeholder: "Task Description"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "task-action-buttons", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "btn-save", onClick: handleUpdate, children: "Save" }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "btn-cancel", onClick: () => setIsEditing(false), children: "Cancel" })
+      ] })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "task-details-view", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h4", { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: description }),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "task-action-buttons", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "btn-edit", onClick: () => setIsEditing(true), children: "Edit" }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "btn-delete", onClick: handleDelete, children: "Delete" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Comments_default, { taskId: task.id, projectId: task.project_id })
+    ] }) });
+  };
+  var TaskDetail_default = TaskDetail;
+
+  // app/javascript/src/components/task/TaskList.tsx
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var TaskList = ({ projectId }) => {
+    const [tasks, setTasks] = (0, import_react11.useState)([]);
+    const [error, setError] = (0, import_react11.useState)(null);
+    const fetchTasks = async () => {
+      if (!projectId) {
+        console.warn("No projectId provided");
+        return;
+      }
+      try {
+        setError(null);
+        console.log(`Fetching tasks for project ID: ${projectId}`);
+        const response = await api_default.get(`/projects/${projectId}/tasks`);
+        console.log("API response:", response);
+        if (Array.isArray(response.data)) {
+          setTasks(response.data);
+        } else {
+          console.error("Unexpected response format:", response.data);
+          setError("Unexpected response format");
+        }
+      } catch (err) {
+        console.error("Error fetching tasks:", err);
+        setError("Failed to load tasks. Please try again later.");
+      }
+    };
+    (0, import_react11.useEffect)(() => {
+      fetchTasks();
+    }, [projectId]);
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h3", { children: "Tasks" }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { style: { color: "red" }, children: error }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { children: tasks.length > 0 ? tasks.map((task) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(TaskDetail_default, { task, onTaskUpdated: fetchTasks, onTaskDeleted: fetchTasks }) }, task.id)) : !error && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: "No tasks available." }) })
+    ] });
+  };
+  var TaskList_default = TaskList;
+
+  // app/javascript/src/components/project/ProjectTasks.tsx
   var import_jsx_runtime14 = __toESM(require_jsx_runtime());
+  var ProjectTasks = ({ projectId }) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("h3", { children: "Manage Project Tasks" }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CreateTask_default, { projectId, onTaskCreated: () => console.log("Task created") }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(TaskList_default, { projectId })
+    ] });
+  };
+  var ProjectTasks_default = ProjectTasks;
+
+  // app/javascript/src/components/project/ProjectDetail.tsx
+  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  var ProjectDetail = () => {
+    const { id } = useParams();
+    const [project, setProject] = (0, import_react12.useState)(null);
+    const navigate = useNavigate();
+    (0, import_react12.useEffect)(() => {
+      const fetchProject = async () => {
+        try {
+          const response = await api_default.get(`/projects/${id}`);
+          setProject(response.data);
+        } catch (error) {
+          console.error("Error fetching project:", error);
+        }
+      };
+      if (id) fetchProject();
+    }, [id]);
+    const handleUpdate = async () => {
+      try {
+        if (id) {
+          const response = await api_default.patch(`/projects/${id}`, { project: { name: project.name, description: project.description } });
+          setProject(response.data);
+          navigate(`/projects/${id}`);
+        }
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    };
+    if (!project) return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: "Loading..." });
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { children: project.name }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: project.description }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+        "input",
+        {
+          type: "text",
+          value: project.name,
+          onChange: (e) => setProject({ ...project, name: e.target.value })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+        "textarea",
+        {
+          value: project.description,
+          onChange: (e) => setProject({ ...project, description: e.target.value })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "update", onClick: handleUpdate, children: "Update Project" }),
+      id && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DeleteProject_default, { id }),
+      id && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(InviteMember_default, { projectId: id }),
+      id && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ProjectTasks_default, { projectId: id })
+    ] });
+  };
+  var ProjectDetail_default = ProjectDetail;
+
+  // app/javascript/src/components/PrivateRoute.tsx
+  var import_react13 = __toESM(require_react());
+  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
+  var PrivateRoute = ({ children }) => {
+    const { user } = (0, import_react13.useContext)(AuthContext);
+    return user ? children : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Navigate, { to: "/" });
+  };
+
+  // app/javascript/src/components/task/CompleteTask.tsx
+  var import_react14 = __toESM(require_react());
+  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
   var CompleteTask = ({ taskId }) => {
-    const [message, setMessage] = (0, import_react12.useState)(null);
+    const [message, setMessage] = (0, import_react14.useState)(null);
     const handleComplete = () => {
       api_default.patch(`/tasks/${taskId}/complete`, { completed: true }).then((response) => {
         setMessage("Task marked as completed");
@@ -29424,21 +29582,21 @@
         setMessage("Unable to complete task");
       });
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", onClick: handleComplete, children: "Mark as Completed" }),
-      message && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { children: message })
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { type: "button", onClick: handleComplete, children: "Mark as Completed" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: message })
     ] });
   };
   var CompleteTask_default = CompleteTask;
 
   // app/javascript/src/components/task/UpdateTask.tsx
-  var import_react13 = __toESM(require_react());
-  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  var import_react15 = __toESM(require_react());
+  var import_jsx_runtime18 = __toESM(require_jsx_runtime());
   var UpdateTask = ({ taskId }) => {
-    const [title, setTitle] = (0, import_react13.useState)("");
-    const [description, setDescription] = (0, import_react13.useState)("");
-    const [message, setMessage] = (0, import_react13.useState)(null);
-    (0, import_react13.useEffect)(() => {
+    const [title, setTitle] = (0, import_react15.useState)("");
+    const [description, setDescription] = (0, import_react15.useState)("");
+    const [message, setMessage] = (0, import_react15.useState)(null);
+    (0, import_react15.useEffect)(() => {
       api_default.get(`/api/v1/tasks/${taskId}`).then((response) => {
         setTitle(response.data.title);
         setDescription(response.data.description);
@@ -29453,9 +29611,9 @@
         setMessage("Unable to update task");
       });
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h3", { children: "Update Task" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h3", { children: "Update Task" }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
         "input",
         {
           type: "text",
@@ -29464,24 +29622,24 @@
           required: true
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
         "textarea",
         {
           value: description,
           onChange: (e) => setDescription(e.target.value)
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: handleSubmit, children: "Update Task" }),
-      message && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: message })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { className: "update", type: "button", onClick: handleSubmit, children: "Update Task" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { children: message })
     ] });
   };
   var UpdateTask_default = UpdateTask;
 
   // app/javascript/src/components/task/DeleteTask.tsx
-  var import_react14 = __toESM(require_react());
-  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
+  var import_react16 = __toESM(require_react());
+  var import_jsx_runtime19 = __toESM(require_jsx_runtime());
   var DeleteTask = ({ taskId }) => {
-    const [message, setMessage] = (0, import_react14.useState)(null);
+    const [message, setMessage] = (0, import_react16.useState)(null);
     const handleDelete = () => {
       api_default.delete(`/tasks/${taskId}`).then(() => {
         setMessage("Task deleted successfully");
@@ -29489,65 +29647,103 @@
         setMessage("Unable to delete task");
       });
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { type: "button", onClick: handleDelete, children: "Delete Task" }),
-      message && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: message })
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "button", onClick: handleDelete, children: "Delete Task" }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: message })
     ] });
   };
   var DeleteTask_default = DeleteTask;
 
   // app/javascript/src/App.tsx
-  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime20 = __toESM(require_jsx_runtime());
   var App = () => {
-    return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(AuthProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(BrowserRouter, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Navbar_default, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "container mx-auto p-4", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Routes, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/auth/callback", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(OAuthCallback_default, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(AuthProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(BrowserRouter, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Navbar_default, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "container mx-auto p-4", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Routes, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Route, { path: "/auth/callback", element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(OAuthCallback_default, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
             path: "/profile",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(UserProfile_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(UserProfile_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/projects/:projectId/tasks", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectTasks_default, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/projects/:projectId/tasks/create", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CreateTask_default, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/update", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(UpdateTask_default, { taskId: "" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/complete", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CompleteTask_default, { taskId: "" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Route, { path: "/tasks/:taskId/delete", element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeleteTask_default, { taskId: "" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
-            path: "/projects",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectsList_default, {}) })
+            path: "/tasks/:taskId/comments",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Comments_default, { taskId: parseInt(useParams().taskId) }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/projects/:projectId/tasks",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ProjectTasks_default, { projectId: "" }) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/projects/:projectId/tasks/create",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CreateTask_default, { projectId: "", onTaskCreated: () => {
+            } }) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/tasks/:taskId/update",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(UpdateTask_default, { taskId: "" }) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/tasks/:taskId/complete",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CompleteTask_default, { taskId: "" }) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/tasks/:taskId/delete",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DeleteTask_default, { taskId: "" }) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          Route,
+          {
+            path: "/",
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ProjectsList_default, {}) })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
             path: "/projects/new",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CreateProject_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CreateProject_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
             path: "/projects/:id",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ProjectDetail_default, {}) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ProjectDetail_default, {}) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
             path: "/projects/:id/delete",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeleteProject_default, { id: "" }) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DeleteProject_default, { id: "" }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           Route,
           {
             path: "/projects/:id/invite",
-            element: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(InviteMember_default, { projectId: "" }) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(InviteMember_default, { projectId: "" }) })
           }
         )
       ] }) })
@@ -29556,10 +29752,10 @@
   var App_default = App;
 
   // app/javascript/src/index.tsx
-  var import_jsx_runtime18 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime21 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_react15.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_react15.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: "Loading..." }), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(App_default, {}) }) })
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_react17.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_react17.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { children: "Loading..." }), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(App_default, {}) }) })
   );
 })();
 /*! Bundled license information:

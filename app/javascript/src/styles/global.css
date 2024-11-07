@@ -1,162 +1,85 @@
-/* app/javascript/src/styles/Navbar.css */
-.navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #e5e7eb;
-}
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
-}
-.navbar-brand {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-.navbar-link {
-  color: #4c51bf;
-  text-decoration: none;
-}
-.navbar-link:hover {
-  color: #3b44cc;
-}
-.navbar-links {
-  display: flex;
-  align-items: center;
-}
-.navbar-user {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.navbar-profile {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #4a5568;
-}
-.navbar-profile:hover {
-  color: #3b44cc;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #edf2f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.avatar-text {
-  color: #4c51bf;
-  font-weight: bold;
-}
-.navbar-logout {
-  background-color: white;
-  color: #e53e3e;
-  border: 1px solid #e53e3e;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-.navbar-logout:hover {
-  background-color: #fee2e2;
-  color: #dc2626;
-}
-.navbar-login {
-  background-color: #4c51bf;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-.navbar-login:hover {
-  background-color: #3b44cc;
-}
-.navbar-button {
-  padding: 10px 20px;
-  margin: 0 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.navbar-button:hover {
-  background-color: #45a049;
-}
+/* src/styles/global.css */
 
-/* app/javascript/src/styles/global.css */
+/* Reset some default styles for consistency */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Global body styles */
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #f8f9fa;
   color: #343a40;
-  padding: 20px;
+  padding: 20px; /* Adding a bit of padding to the body for breathing room */
 }
+
+/* Remove underline from links and make color inherit */
 a {
   color: inherit;
   text-decoration: none;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+/* Global heading styles */
+h1, h2, h3, h4, h5, h6 {
   color: #212529;
   font-weight: 600;
 }
+
+/* General button styles */
 button {
   cursor: pointer;
   border: none;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
+  background-color: #007bff; /* Adding a nice blue background */
+  color: #fff; /* White text color for buttons */
+  padding: 10px 20px; /* Add padding for better click area */
   font-size: 16px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
+
 button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
 }
+
 button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.6);
+  outline: none; /* Remove the default focus outline */
+  box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.6); /* Custom focus outline */
 }
+
+/* Delete Button Styles */
 button.delete {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #dc3545; /* Red background for delete */
+  color: #fff; /* White text for visibility */
 }
+
 button.delete:hover {
-  background-color: #c82333;
+  background-color: #c82333; /* Darker red on hover */
 }
+
 button.delete:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.6);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.6); /* Custom focus outline for delete */
 }
+
+/* Update Button Styles */
 button.update {
-  background-color: #28a745;
-  color: #fff;
+  background-color: #28a745; /* Green background for update */
+  color: #fff; /* White text for visibility */
 }
+
 button.update:hover {
-  background-color: #218838;
+  background-color: #218838; /* Darker green on hover */
 }
+
 button.update:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.6);
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.6); /* Custom focus outline for update */
 }
+
+/* Add spacing between form elements, buttons, and containers */
 input,
 textarea,
 select,
@@ -168,17 +91,22 @@ button {
   border: 1px solid #ddd;
   width: 100%;
 }
+
 input:focus,
 textarea:focus,
 select:focus {
   border-color: #007bff;
   outline: none;
 }
+
+/* Container for centering content and keeping a max width */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* Card-like container for content */
 .card {
   background-color: #fff;
   padding: 20px;
@@ -186,10 +114,15 @@ select:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
+
+/* Add margins around main sections for clarity */
 section,
 article {
   margin-bottom: 40px;
 }
+
+
+/* Global comment styles */
 .comments-section {
   background-color: #fff;
   padding: 20px;
@@ -197,12 +130,15 @@ article {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .comments-section h3 {
   font-size: 1.5rem;
   font-weight: bold;
   color: #212529;
   margin-bottom: 15px;
 }
+
+/* Individual comment styling */
 .comment {
   background-color: #f9f9f9;
   padding: 10px;
@@ -210,24 +146,30 @@ article {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .comment-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
 .comment-user {
   font-weight: bold;
   color: #007bff;
 }
+
 .comment-time {
   font-size: 0.85rem;
   color: #6c757d;
 }
+
 .comment-text {
   font-size: 1rem;
   color: #212529;
   margin-bottom: 10px;
 }
+
+/* Reply button styles */
 .reply-btn {
   background-color: #007bff;
   color: #fff;
@@ -238,14 +180,18 @@ article {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .reply-btn:hover {
   background-color: #0056b3;
 }
+
+/* Comment form styles */
 .comment-form {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
+
 .comment-input {
   flex: 1;
   padding: 10px;
@@ -253,6 +199,7 @@ article {
   border-radius: 5px;
   font-size: 1rem;
 }
+
 .comment-submit-btn {
   background-color: #28a745;
   color: white;
@@ -263,16 +210,23 @@ article {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .comment-submit-btn:hover {
   background-color: #218838;
 }
+
 .comment-submit-btn:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.6);
 }
+
 .comments-list {
   margin-top: 20px;
 }
+
+/* src/components/task/TaskDetail.css */
+
+/* Container styles for task details */
 .task-detail {
   background-color: #fff;
   padding: 20px;
@@ -280,16 +234,20 @@ article {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
+
 .task-details-view h4 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 .task-details-view p {
   font-size: 1rem;
   color: #6c757d;
   margin-bottom: 20px;
 }
+
+/* Input fields for editing task */
 .task-title-input,
 .task-description-input {
   width: 100%;
@@ -299,15 +257,18 @@ article {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
 .task-description-input {
   height: 100px;
   resize: vertical;
 }
+
 .task-action-buttons {
   display: flex;
   gap: 10px;
   margin-top: 20px;
 }
+
 .btn-edit,
 .btn-delete,
 .btn-save,
@@ -319,32 +280,43 @@ article {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+/* Edit button styles */
 .btn-edit {
   background-color: #007bff;
   color: white;
 }
+
 .btn-edit:hover {
   background-color: #0056b3;
 }
+
+/* Delete button styles */
 .btn-delete {
   background-color: #dc3545;
   color: white;
 }
+
 .btn-delete:hover {
   background-color: #c82333;
 }
+
+/* Save button styles */
 .btn-save {
   background-color: #28a745;
   color: white;
 }
+
 .btn-save:hover {
   background-color: #218838;
 }
+
+/* Cancel button styles */
 .btn-cancel {
   background-color: #6c757d;
   color: white;
 }
+
 .btn-cancel:hover {
   background-color: #5a6268;
 }
-/*# sourceMappingURL=/assets/application.css.map */

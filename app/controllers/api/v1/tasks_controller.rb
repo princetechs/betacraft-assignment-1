@@ -5,15 +5,21 @@ module Api
       before_action :set_task, only: [:show, :update, :destroy, :complete]
 
       # GET /api/v1/projects/:project_id/tasks
-      def show
+      def index
         tasks = @project.tasks
         puts "........devsan #{@project}"
         render json: tasks, status: :ok
       end
       # Create a task for a project
       def create
+        assigned_user = @project.members.find_by(id: params[:task][:user_id])
+        
+        if assigned_user.nil?
+          render json: { error: "User not found or not a project member" }, status: :not_found and return
+        end
+
         task = @project.tasks.new(task_params)
-        task.user = current_user
+        task.user = assigned_user
 
         if task.save
           render json: task, status: :created

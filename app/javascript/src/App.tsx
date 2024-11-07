@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import GoogleOAuthButton from './components/GoogleLoginButton';
@@ -15,7 +15,8 @@ import CreateTask from './components/task/CreateTask';
 import CompleteTask from './components/task/CompleteTask';
 import UpdateTask from './components/task/UpdateTask';
 import DeleteTask from './components/task/DeleteTask';
-import ProjectTasks from './components/ProjectTasks';
+import ProjectTasks from './components/project/ProjectTasks';
+import Comments from './components/Comments';
 
 const App: React.FC = () => {
   return (
@@ -36,16 +37,61 @@ const App: React.FC = () => {
                 </PrivateRoute>
               }
             />
+            
             {/* Task Routes */}
-            <Route path="/projects/:projectId/tasks" element={<ProjectTasks />} />
-            <Route path="/projects/:projectId/tasks/create" element={<CreateTask />} />
-            <Route path="/tasks/:taskId/update" element={<UpdateTask taskId={''} />} />
-            <Route path="/tasks/:taskId/complete" element={<CompleteTask taskId={''} />} />
-            <Route path="/tasks/:taskId/delete" element={<DeleteTask taskId={''} />} />
+            <Route
+              path="/tasks/:taskId/comments"
+              element={
+                <PrivateRoute>
+                  <Comments taskId={parseInt(useParams().taskId as string)} projectId={0} />
+                </PrivateRoute>
+              }
+            />
+            
+            <Route
+              path="/projects/:projectId/tasks"
+              element={
+                <PrivateRoute>
+                  <ProjectTasks projectId={''} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/projects/:projectId/tasks/create"
+              element={
+                <PrivateRoute>
+                  <CreateTask projectId={''} onTaskCreated={() => {}} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tasks/:taskId/update"
+              element={
+                <PrivateRoute>
+                  <UpdateTask taskId={''} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tasks/:taskId/complete"
+              element={
+                <PrivateRoute>
+                  <CompleteTask taskId={''} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tasks/:taskId/delete"
+              element={
+                <PrivateRoute>
+                  <DeleteTask taskId={''} />
+                </PrivateRoute>
+              }
+            />
 
             {/* Project Routes */}
             <Route
-              path="/projects"
+              path="/"
               element={
                 <PrivateRoute>
                   <ProjectsList />

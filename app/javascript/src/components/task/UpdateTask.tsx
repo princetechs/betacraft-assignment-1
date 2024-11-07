@@ -46,7 +46,7 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ taskId }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="button" onClick={handleSubmit}>Update Task</button>
+      <button className='update' type="button" onClick={handleSubmit}>Update Task</button>
       {message && <p>{message}</p>}
     </div>
   );

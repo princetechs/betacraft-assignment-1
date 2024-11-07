@@ -1,24 +1,22 @@
+// src/components/project/DeleteProject.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api'; // Import the custom API instance
+import api from '../../services/api';
 
 const DeleteProject: React.FC<{ id: string }> = ({ id }) => {
   const navigate = useNavigate();
 
-  const handleDelete = () => {
-    api.delete(`/projects/${id}`)
-      .then(() => {
-        console.log('Project deleted successfully');
-        navigate('/projects');
-      })
-      .catch((error) => {
-        console.error('Error deleting project:', error);
-      });
+  const handleDelete = async () => {
+    try {
+      await api.delete(`/projects/${id}`);
+      console.log('Project deleted');
+      navigate('/projects');
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
   };
 
-  return (
-    <button className='deletebtn' onClick={handleDelete}>Delete Project</button>
-  );
+  return <button className='delete' onClick={handleDelete}>Delete Project</button>;
 };
 
 export default DeleteProject;
