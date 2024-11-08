@@ -2,6 +2,8 @@
 
 A comprehensive project management system built with Ruby on Rails and React, enabling efficient task management, user collaboration, and project organization.
 
+> **Note:** All features are implemented. Only Test-Driven Development (TDD) implementation remains to be completed.
+
 ## Features
 
 - 🔐 User authentication with Google OAuth2
@@ -113,4 +115,7 @@ RAILS_MASTER_KEY=<your-master-key>
 ## Credit
 
 This project was built using the beta-rails boilerplate to streamline the initial Rails setup.
+
+
+
 
