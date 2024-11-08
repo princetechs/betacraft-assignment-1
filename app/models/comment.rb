@@ -21,11 +21,29 @@
 #  fk_rails_...  (task_id => tasks.id)
 #  fk_rails_...  (user_id => users.id)
 #
+
 class Comment < ApplicationRecord
-  validates :content ,presence: true
+  # Validations
+  validates :content, presence: true
+
+  # Associations
   belongs_to :task
   belongs_to :user
-
   belongs_to :parent_comment, class_name: 'Comment', optional: true
   has_many :child_comments, class_name: 'Comment', foreign_key: 'parent_comment_id', dependent: :destroy
+
+  # Scopes
+  scope :root_comments, -> { where(parent_comment_id: nil) } 
+  scope :ordered, -> { order(created_at: :asc) }            
+
+  # Check if a comment has any replies (child comments)
+  def has_replies?
+    child_comments.exists?
+  end
+
+
+  # Fetches the complete comment thread for a specific task
+  def self.thread_for_task(task_id)
+    where(task_id: task_id).includes(:user, :parent_comment).ordered
+  end
 end
