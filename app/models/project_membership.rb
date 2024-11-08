@@ -22,4 +22,7 @@
 class ProjectMembership < ApplicationRecord
   belongs_to :project
   belongs_to :user
+
+  # Ensures uniqueness of user-project combinations
+  validates :user_id, uniqueness: { scope: :project_id, message: "User is already a member of this project" }
 end
