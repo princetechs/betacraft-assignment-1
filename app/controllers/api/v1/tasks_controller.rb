@@ -9,16 +9,16 @@ module Api
         tasks = @project.tasks
         render json: tasks, status: :ok
       end
+
       # Create a task for a project
       def create
-        assigned_user = @project.members.find_by(id: params[:task][:user_id])
+        assigned_user = @project.members.find_by(id: task_params[:user_id])
         
         if assigned_user.nil?
           render json: { error: "User not found or not a project member" }, status: :not_found and return
         end
 
-        task = @project.tasks.new(task_params)
-        task.user = assigned_user
+        task = @project.tasks.new(task_params.merge(user: assigned_user))
 
         if task.save
           render json: task, status: :created
@@ -33,8 +33,11 @@ module Api
           return render json: { error: 'You can only complete your own tasks' }, status: :forbidden
         end
 
-        @task.update(completed: true)
-        render json: { message: 'Task marked as completed', task: @task }, status: :ok
+        if @task.update(completed: true)
+          render json: { message: 'Task marked as completed', task: @task }, status: :ok
+        else
+          render json: { error: 'Unable to complete task' }, status: :unprocessable_entity
+        end
       end
 
       # Update a task
@@ -55,17 +58,17 @@ module Api
       private
 
       def set_project
-        @project = Project.find(params[:project_id])
+        @project = Project.find_by(id: params[:project_id])
+        render json: { error: 'Project not found' }, status: :not_found if @project.nil?
       end
 
       def set_task
-        @task = @project.tasks.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Task not found' }, status: :not_found
+        @task = @project.tasks.find_by(id: params[:id])
+        render json: { error: 'Task not found' }, status: :not_found if @task.nil?
       end
 
       def task_params
-        params.require(:task).permit(:title, :description, :completed)
+        params.require(:task).permit(:title, :description, :completed, :user_id)
       end
     end
   end

@@ -13,7 +13,7 @@ module Api
       # GET /api/v1/projects/:id/members
       def members
         if @project
-          render json: @project.members.select(:id, :first_name, :last_name, :email), status: :ok
+          render json: @project.member_details, status: :ok
         else
           render json: { error: "Project not found" }, status: :not_found
         end
@@ -25,7 +25,7 @@ module Api
 
         if @project.save
           # Create a ProjectMembership for the creator with the role 'admin'
-          ProjectMembership.create!(project: @project, user: @user, role: 'admin')
+          @project.project_memberships.create!(user: @user, role: 'admin')
           render json: @project, status: :created
         else
           render json: @project.errors, status: :unprocessable_entity
@@ -60,10 +60,14 @@ module Api
 
         user = User.find_by(email: params[:email])
 
-        if user && @project.members << user
-          render json: { message: "User invited successfully" }, status: :ok
+        if user
+          if @project.invite_user(user)
+            render json: { message: "User invited successfully" }, status: :ok
+          else
+            render json: { error: "User is already a member of the project" }, status: :unprocessable_entity
+          end
         else
-          render json: { error: "Unable to invite user" }, status: :unprocessable_entity
+          render json: { error: "User not found" }, status: :unprocessable_entity
         end
       end
 
