@@ -22,10 +22,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Comment < ApplicationRecord
+  validates :content ,presence: true
   belongs_to :task
   belongs_to :user
 
-  # For nested comments (comments on other comments)
   belongs_to :parent_comment, class_name: 'Comment', optional: true
   has_many :child_comments, class_name: 'Comment', foreign_key: 'parent_comment_id', dependent: :destroy
 end

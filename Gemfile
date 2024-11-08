@@ -55,7 +55,9 @@ group :development, :test do
   gem 'seedbank', '~> 0.5.0'
   gem 'letter_opener', '~> 1.10'
 end
-
+group :test do
+  gem 'database_cleaner-active_record'
+end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '~> 4.2', '>= 4.2.1'
