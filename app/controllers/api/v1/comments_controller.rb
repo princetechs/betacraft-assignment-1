@@ -2,21 +2,19 @@ module Api
   module V1
     class CommentsController < BaseController
       before_action :authenticate_user!
+      before_action :set_task
 
       def index
-        task = Task.find(params[:task_id])
-        comments = task.comments.includes(:user, :parent_comment).order(created_at: :asc)
-
+        comments = @task.all_comments
         render json: comments, include: [:user, :parent_comment], status: :ok
       end
 
-      # Action to create a new comment for a task
       def create
-        task = Task.find(params[:task_id])
-        parent_comment = Comment.find_by(id: params[:parent_comment_id]) 
-        comment = task.comments.new(comment_params)
+        parent_comment = Comment.find_by(id: params[:parent_comment_id])
+        comment = @task.comments.new(comment_params)
         comment.user = current_user
         comment.parent_comment = parent_comment 
+
         if comment.save
           render json: comment, status: :created
         else
@@ -26,7 +24,10 @@ module Api
 
       private
 
-      # Strong parameters for comment creation
+      def set_task
+        @task = Task.find(params[:task_id])
+      end
+
       def comment_params
         params.require(:comment).permit(:content)
       end

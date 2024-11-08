@@ -25,4 +25,18 @@ class Task < ApplicationRecord
   belongs_to :project
   belongs_to :user
   has_many :comments, dependent: :destroy
+
+  # Scopes
+  scope :recent, -> { order(created_at: :desc) }  
+  scope :due_soon, -> { where('due_date < ?', 1.week.from_now) } 
+
+  # Method to check if a task has any comments
+  def has_comments?
+    comments.exists?
+  end
+
+  # Method to get all comments for a task, with their associated user and parent comments
+  def all_comments
+    comments.includes(:user, :parent_comment).ordered
+  end
 end

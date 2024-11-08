@@ -29060,7 +29060,7 @@
       navigate("/projects/new");
     };
     const handleViewProjects = () => {
-      navigate("/projects");
+      navigate("/");
     };
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("nav", { className: "navbar", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "navbar-container", children: [
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "navbar-brand", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { to: "/", className: "navbar-link", children: "Kulu App" }) }),
@@ -29155,7 +29155,6 @@
       e.preventDefault();
       try {
         const response = await api_default.post("/projects", { project: { name, description } });
-        console.log("Project created:", response.data);
         setName("");
         setDescription("");
       } catch (error2) {
@@ -29199,7 +29198,6 @@
     const handleDelete = async () => {
       try {
         await api_default.delete(`/projects/${id}`);
-        console.log("Project deleted");
         navigate("/projects");
       } catch (error) {
         console.error("Error deleting project:", error);
@@ -29471,9 +29469,7 @@
       }
       try {
         setError(null);
-        console.log(`Fetching tasks for project ID: ${projectId}`);
         const response = await api_default.get(`/projects/${projectId}/tasks`);
-        console.log("API response:", response);
         if (Array.isArray(response.data)) {
           setTasks(response.data);
         } else {
@@ -29672,7 +29668,7 @@
           Route,
           {
             path: "/tasks/:taskId/comments",
-            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Comments_default, { taskId: parseInt(useParams().taskId) }) })
+            element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(PrivateRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Comments_default, { taskId: parseInt(useParams().taskId), projectId: 0 }) })
           }
         ),
         /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
