@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleViewProjects = () => {
-    navigate('/projects');  // Adjust the route to view all projects
+    navigate('/');  // Adjust the route to view all projects
   };
 
   return (

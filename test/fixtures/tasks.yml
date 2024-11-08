@@ -1,0 +1,9 @@
+one:
+  title: "Task One"
+  description: "This is the first task"
+  project_id: 1 # Replace with actual project ID if needed
+
+two:
+  title: "Task Two"
+  description: "This is the second task"
+  project_id: 1
